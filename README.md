@@ -1,7 +1,6 @@
 projeto - forum hub
 
-
-CRUD
+## CRUD
 
 C - POST (OK): -- endpoint: http://localhost:8080/topicos
 
@@ -15,4 +14,19 @@ C - POST (OK): -- endpoint: http://localhost:8080/topicos
 }
 ```
 
+R - GET (OK): -- ENDPOINT: http://localhost:8080/topicos
 
+
+```json
+{
+    "content": [
+        {
+            "titulo": "Estou com problemas",
+            "mensagem": "Não consigo enviar a atividade",
+            "status": "NAO_RESPONDIDO",
+            "autorId": "Árlisson Diôgo",
+            "cursoId": "Computação",
+            "dataCriacao": "2026-01-16T21:04:15.82003"
+        }
+    ]
+```

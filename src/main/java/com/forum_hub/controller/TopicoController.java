@@ -1,17 +1,13 @@
 package com.forum_hub.controller;
 
-import com.forum_hub.domain.topico.DadosDetalhamentoTopico;
-import com.forum_hub.domain.topico.Topico;
-import com.forum_hub.domain.topico.DadosCadastroTopico;
-import com.forum_hub.domain.topico.TopicoRepository;
+import com.forum_hub.domain.topico.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
@@ -28,5 +24,11 @@ public class TopicoController {
         repository.save(topico);
         var uri = uriBuilder.path("/topicos/{id}").buildAndExpand(topico.getId()).toUri();
         return ResponseEntity.created(uri).body(new DadosDetalhamentoTopico(topico));
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<DadosListagemTopicos>> listarPerguntas(Pageable paginacao) {
+        var page = repository.findAllByAtivoTrue(paginacao).map(DadosListagemTopicos::new);
+        return ResponseEntity.ok(page);
     }
 }
