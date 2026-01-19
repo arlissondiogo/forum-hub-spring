@@ -31,4 +31,14 @@ public class TopicoController {
         var page = repository.findAllByAtivoTrue(paginacao).map(DadosListagemTopicos::new);
         return ResponseEntity.ok(page);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DadosDetalhamentoTopico> detalhar(@PathVariable Long id) {
+        return repository.findById(id)
+                .map(topico -> ResponseEntity.ok(new DadosDetalhamentoTopico(topico)))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+
+
 }

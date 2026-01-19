@@ -30,3 +30,15 @@ R - GET (OK): -- ENDPOINT: http://localhost:8080/topicos
         }
     ]
 ```
+--> detalhar: ENDPOINT: http://localhost:8080/topicos/{id}
+
+
+```json
+{
+  "id": 2,
+  "titulo": "Estou com problemas",
+  "mensagem": "Não consigo enviar a atividade",
+  "autorId": "Árlisson Diôgo",
+  "cursoId": "Computação"
+}
+```
