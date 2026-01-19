@@ -30,3 +30,27 @@ R - GET (OK): -- ENDPOINT: http://localhost:8080/topicos
         }
     ]
 ```
+--> detalhar: ENDPOINT: http://localhost:8080/topicos/{id}
+
+
+```json
+{
+  "id": 2,
+  "titulo": "Estou com problemas",
+  "mensagem": "Não consigo enviar a atividade",
+  "autorId": "Árlisson Diôgo",
+  "cursoId": "Computação"
+}
+```
+
+P - PUT (OK): -- ENDPOINT: http://localhost:8080/topicos/{id}
+
+
+```json
+{
+  "titulo":"Estou com problemas na atividade de programação"
+}
+```
+
+D - DELETE (OK): -- ENDPOINT: http://localhost:8080/topicos/{id}
+

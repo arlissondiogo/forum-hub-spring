@@ -31,4 +31,43 @@ public class TopicoController {
         var page = repository.findAllByAtivoTrue(paginacao).map(DadosListagemTopicos::new);
         return ResponseEntity.ok(page);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DadosDetalhamentoTopico> detalhar(@PathVariable Long id) {
+        return repository.findById(id)
+                .map(topico -> ResponseEntity.ok(new DadosDetalhamentoTopico(topico)))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<DadosDetalhamentoTopico> atualizar(
+            @PathVariable Long id,
+            @RequestBody @Valid DadosAtualizacaoTopico dados
+    ) {
+        var optionalTopico = repository.findById(id);
+        if (optionalTopico.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        var topico = optionalTopico.get();
+        topico.atualizarInformacoes(dados);
+        return ResponseEntity.ok(new DadosDetalhamentoTopico(topico));
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<Void> excluir(@PathVariable Long id) {
+
+        var optionalTopico = repository.findById(id);
+
+        if (optionalTopico.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        repository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
+
 }

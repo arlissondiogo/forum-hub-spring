@@ -1,6 +1,7 @@
 package com.forum_hub.domain.topico;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -46,7 +47,19 @@ public class Topico {
         this.ativo = true;
     }
 
-    public void excluir() {
-        this.ativo = false;
+
+    public void atualizarInformacoes(@Valid DadosAtualizacaoTopico dados) {
+        if (dados.titulo() != null) {
+            this.titulo = dados.titulo();
+        }
+        if (dados.mensagem() != null) {
+            this.mensagem = dados.mensagem();
+        }
+        if (dados.autorId() != null) {
+            this.autorId = dados.autorId();
+        }
+        if (dados.cursoId() != null) {
+            this.cursoId = dados.cursoId();
+        }
     }
 }
