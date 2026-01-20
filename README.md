@@ -1,5 +1,7 @@
 # Fórum Hub API
-
+<p align="center">
+  <img src="src/main/assets/Badge-Spring.png" alt="Badge Literalura" width="150">
+</p>
 API REST desenvolvida com Spring Boot para gerenciamento de tópicos de um fórum, com autenticação e autorização via JWT.
 
 ---
